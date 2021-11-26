@@ -1,6 +1,5 @@
 package io.github.stavshamir.springwolf.asyncapi.scanners.channels;
 
-import com.google.common.collect.ImmutableMap;
 import io.github.stavshamir.springwolf.asyncapi.types.channel.operation.bindings.OperationBinding;
 import io.github.stavshamir.springwolf.asyncapi.types.channel.operation.bindings.kafka.KafkaOperationBinding;
 import io.github.stavshamir.springwolf.configuration.KafkaProtocolConfiguration;
@@ -66,7 +65,7 @@ public class KafkaChannelsScanner extends AbstractChannelScanner<KafkaListener>
         }
 
         KafkaOperationBinding binding = KafkaOperationBinding.withGroupId(groupId);
-        return ImmutableMap.of(KafkaOperationBinding.KAFKA_BINDING_KEY, binding);
+        return Map.of(KafkaOperationBinding.KAFKA_BINDING_KEY, binding);
     }
 
     @Override

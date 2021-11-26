@@ -13,11 +13,11 @@ import io.github.stavshamir.springwolf.configuration.KafkaProtocolConfiguration;
 import io.github.stavshamir.springwolf.schemas.DefaultSchemasService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@SpringBootTest
 @ContextConfiguration(classes = {KafkaChannelsScanner.class, DefaultSchemasService.class})
 @TestPropertySource(properties = "kafka.topics.test=test-topic")
 public class KafkaChannelsScannerTest {
@@ -55,7 +55,7 @@ public class KafkaChannelsScannerTest {
 
     private static final String TOPIC = "test-topic";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         when(kafkaProtocolConfiguration.getBasePackage())
                 .thenReturn("Does not matter - will be set by component scanner mock");
