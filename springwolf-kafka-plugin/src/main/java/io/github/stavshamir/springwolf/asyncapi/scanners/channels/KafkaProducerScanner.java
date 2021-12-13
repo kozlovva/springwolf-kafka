@@ -66,6 +66,7 @@ public class KafkaProducerScanner {
         log.debug("Scanning class \"{}\" for @\"{}\" annotated methods", type.getName(), annotationClass.getName());
 
         return Arrays.stream(type.getDeclaredMethods())
+                .filter(method -> !method.isBridge())
                 .filter(method -> method.isAnnotationPresent(annotationClass))
                 .collect(toSet());
     }
